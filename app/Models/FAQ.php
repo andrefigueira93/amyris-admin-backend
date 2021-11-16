@@ -15,7 +15,7 @@ class FAQ extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'f_a_qs';
+    protected $table = 'faqs';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];

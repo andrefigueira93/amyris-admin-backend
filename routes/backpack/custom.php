@@ -20,7 +20,7 @@ Route::group([
     Route::crud('client', 'ClientCrudController');
     Route::crud('section', 'SectionCrudController');
     Route::crud('landing-page', 'LandingPageCrudController');
-    Route::crud('f-a-q', 'FAQCrudController');
+    Route::crud('faq', 'FAQCrudController');
     Route::crud('testimonial', 'TestimonialCrudController');
     Route::crud('bundle', 'BundleCrudController');
     Route::crud('newsletter', 'NewsletterCrudController');
@@ -28,4 +28,5 @@ Route::group([
     Route::crud('project', 'ProjectCrudController');
     Route::crud('ingredient', 'IngredientCrudController');
     Route::crud('category', 'CategoryCrudController');
+    Route::crud('user', 'UserCrudController');
 }); // this should be the absolute last line of this file
