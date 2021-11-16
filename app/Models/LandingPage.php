@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class LandingPage extends Model
 {
-    use CrudTrait;
+    use CrudTrait, HasSlug;
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +30,15 @@ class LandingPage extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

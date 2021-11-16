@@ -6,7 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Project extends Model
+class Video extends Model
 {
     use CrudTrait;
 
@@ -16,7 +16,7 @@ class Project extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'projects';
+    protected $table = 'videos';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -36,8 +36,8 @@ class Project extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function partner(): BelongsTo {
-        return $this->belongsTo(Partner::class);
+    public function project(): BelongsTo {
+        return $this->belongsTo(Project::class);
     }
 
     /*

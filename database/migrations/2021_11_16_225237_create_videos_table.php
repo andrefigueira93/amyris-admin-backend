@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLandingPagesTable extends Migration
+class CreateVideosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateLandingPagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('landing_pages', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
-            $table->string('product_handle')
-                ->nullable();
-            $table->text('slug')->nullable();
-            $table->text('description');
-            $table->longText('content');
-            $table->boolean('active')->default(0);
+            $table->string('title');
+            $table->foreignId('project_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->string('url');
             $table->timestamps();
             $table->softDeletesTz();
         });
@@ -34,6 +32,6 @@ class CreateLandingPagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('landing_pages');
+        Schema::dropIfExists('videos');
     }
 }
