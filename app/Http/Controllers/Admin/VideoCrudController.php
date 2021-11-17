@@ -62,6 +62,9 @@ class VideoCrudController extends CrudController
         CRUD::field('project')
             ->label('Belongs to the project')
             ->type('relationship');
+        CRUD::field('page')
+            ->label('Belongs to the page')
+            ->type('relationship');
         CRUD::field('url')
             ->label('URL');
 

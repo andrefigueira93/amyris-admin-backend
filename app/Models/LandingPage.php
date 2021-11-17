@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class LandingPage extends Model
 {
-    use CrudTrait, HasSlug;
+    use CrudTrait, HasSlug, SoftDeletes;
 
     /*
     |--------------------------------------------------------------------------
@@ -44,6 +46,10 @@ class LandingPage extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    public function project(): BelongsTo {
+        return $this->belongsTo(Project::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

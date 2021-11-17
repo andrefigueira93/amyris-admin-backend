@@ -40,6 +40,10 @@ class Video extends Model
         return $this->belongsTo(Project::class);
     }
 
+    public function page(): BelongsTo {
+        return $this->belongsTo(LandingPage::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Section extends Model
 {
@@ -34,6 +35,10 @@ class Section extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    public function page(): BelongsTo {
+        return $this->belongsTo(LandingPage::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

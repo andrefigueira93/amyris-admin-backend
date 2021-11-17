@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PartnerRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Library\CrudPanel\CrudColumn;
 use Backpack\CRUD\app\Library\CrudPanel\CrudField;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -41,7 +42,12 @@ class PartnerCrudController extends CrudController
     protected function setupListOperation()
     {
 
+        CrudColumn::name('name')
+            ->type('text');
 
+        CrudColumn::name('user')
+            ->type('relationship')
+            ->label('User Account');
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\LandingPageCrudController;
+use App\Http\Controllers\Api\LandingPageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/pages/{project}/', [LandingPageController::class, 'index']);
+Route::get('/pages/{project}/{id}', [LandingPageController::class, 'show']);
