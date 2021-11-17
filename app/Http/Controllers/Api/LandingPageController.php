@@ -35,11 +35,11 @@ class LandingPageController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        return LandingPage::find($id);
+        return response()->json(LandingPage::find($id)->first());
     }
 
     /**
