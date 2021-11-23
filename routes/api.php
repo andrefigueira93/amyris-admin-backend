@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\LandingPageCrudController;
 use App\Http\Controllers\Api\LandingPageController;
+use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\TopBannerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::get('/top-banner/{project}/', [TopBannerController::class, 'index']);
 Route::get('/pages/{project}/', [LandingPageController::class, 'index']);
-Route::get('/pages/{project}/{id}', [LandingPageController::class, 'show']);
+Route::get('/pages/{project}/{slug}', [LandingPageController::class, 'show']);
+Route::get('/project/{project}', [ProjectController::class, 'show']);

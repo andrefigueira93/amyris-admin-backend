@@ -3,24 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\LandingPage;
 use App\Models\Project;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class LandingPageController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function index(string $projectDomain)
+    public function index()
     {
-        $pages = Project::where('domain', $projectDomain)->first()
-            ->pages()
-            ->where('active', 1)
-            ->get();
-        return response()->json($pages);
+        //
     }
 
     /**
@@ -37,15 +33,21 @@ class LandingPageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $slug
-     * @return \Illuminate\Http\JsonResponse
+     * @param  string  $domain
+     * @return JsonResponse
      */
-    public function show(string $slug): \Illuminate\Http\JsonResponse
+    public function show(string $domain): JsonResponse
     {
-        $lp = \Cache::remember("pages:$slug", 3600, function () use ($slug) {
-            return LandingPage::where('slug', $slug)->first();
-        });
-        return response()->json($lp);
+        \Cache::forget('projects');
+//        $project = \Cache::remember("projects:$domain", 3600, function () use ($domain) {
+//            return Project::with(['pages', 'topBanner'])
+//                ->where('domain', $domain)
+//                ->first();
+//        });
+        $project = Project::with(['pages', 'topBanner', 'socialmedias'])
+        ->where('domain', $domain)
+        ->first();
+        return response()->json($project);
     }
 
     /**

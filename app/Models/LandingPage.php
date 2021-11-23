@@ -24,7 +24,7 @@ class LandingPage extends Model
     // public $timestamps = false;
     protected $guarded = ['id'];
     // protected $fillable = [];
-    // protected $hidden = [];
+     protected $hidden = ['project_id'];
     // protected $dates = [];
 
     /*

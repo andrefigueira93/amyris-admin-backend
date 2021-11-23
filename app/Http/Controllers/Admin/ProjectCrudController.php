@@ -47,7 +47,7 @@ class ProjectCrudController extends CrudController
             ->options([
                 0 => 'Shopify'
             ]);
-        CRUD::column('url');
+        CRUD::column('domain');
         CRUD::column('repository_url');
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -79,7 +79,7 @@ class ProjectCrudController extends CrudController
         ->options([
             0 => 'Shopify'
         ]);
-        CRUD::field('url');
+        CRUD::field('domain');
         CRUD::field('repository_url');
 
 

@@ -57,8 +57,11 @@ class SocialMediaCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(SocialMediaRequest::class);
+        CRUD::field('project')
+            ->type('relationship')
+            ->label('Belongs to the project');
         CRUD::field('name');
-        CRUD::field('url');
+        CRUD::field('link');
 
 
         /**

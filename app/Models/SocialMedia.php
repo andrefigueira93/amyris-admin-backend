@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SocialMedia extends Model
 {
@@ -15,7 +16,7 @@ class SocialMedia extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'social_media';
+    protected $table = 'social_medias';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -34,6 +35,10 @@ class SocialMedia extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    public function project(): BelongsTo {
+        return $this->belongsTo(Project::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

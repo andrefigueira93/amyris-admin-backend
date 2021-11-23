@@ -30,4 +30,7 @@ Route::group([
     Route::crud('category', 'CategoryCrudController');
     Route::crud('user', 'UserCrudController');
     Route::crud('video', 'VideoCrudController');
+    Route::crud('top-banner', 'TopBannerCrudController');
+    Route::crud('collection', 'CollectionCrudController');
+    Route::crud('feature', 'FeatureCrudController');
 }); // this should be the absolute last line of this file

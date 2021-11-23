@@ -141,9 +141,12 @@ namespace App\Models{
  * @property int $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property int|null $project_id
+ * @property-read \App\Models\Project|null $project
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage newQuery()
+ * @method static \Illuminate\Database\Query\Builder|LandingPage onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage query()
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage whereContent($value)
@@ -151,9 +154,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LandingPage whereProjectId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|LandingPage whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|LandingPage withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|LandingPage withoutTrashed()
  */
 	class LandingPage extends \Eloquent {}
 }
@@ -229,16 +235,23 @@ namespace App\Models{
  * @property int $partner_id
  * @property string $storefront_api_url
  * @property string $technology
- * @property string|null $url
+ * @property string|null $domain
  * @property string $repository_url
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+ * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\LandingPage[] $pages
+ * @property-read int|null $pages_count
+ * @property-read \App\Models\Partner $partner
  * @method static \Illuminate\Database\Eloquent\Builder|Project newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Project newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Project onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Project query()
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereDomain($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project wherePartnerId($value)
@@ -246,7 +259,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereStorefrontApiUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereTechnology($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Project whereUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|Project withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Project withoutTrashed()
  */
 	class Project extends \Eloquent {}
 }
@@ -291,6 +305,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
+ * @property-read \App\Models\LandingPage $page
  * @method static \Illuminate\Database\Eloquent\Builder|Section newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Section newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Section query()
@@ -345,6 +360,38 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\TopBanner
+ *
+ * @property int $id
+ * @property int $project_id
+ * @property string $text
+ * @property string|null $link
+ * @property int $active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Project $project
+ * @property-read TopBanner|null $topBanner
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner newQuery()
+ * @method static \Illuminate\Database\Query\Builder|TopBanner onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TopBanner whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|TopBanner withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|TopBanner withoutTrashed()
+ */
+	class TopBanner extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -375,5 +422,32 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Video
+ *
+ * @property int $id
+ * @property string $title
+ * @property int $project_id
+ * @property string $url
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property-read \App\Models\LandingPage $page
+ * @property-read \App\Models\Project $project
+ * @method static \Illuminate\Database\Eloquent\Builder|Video newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Video newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Video query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereProjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video whereUrl($value)
+ */
+	class Video extends \Eloquent {}
 }
 

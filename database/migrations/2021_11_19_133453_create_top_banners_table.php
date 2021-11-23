@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectsTable extends Migration
+class CreateTopBannersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('top_banners', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('partner_id')
+            $table->foreignId('project_id')
                 ->constrained()
+                ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->text('storefront_api_url');
-            $table->string('technology');
-            $table->string('domain')
+            $table->text('text');
+            $table->text('link')
                 ->nullable();
-            $table->string('repository_url');
+            $table->boolean('active');
             $table->timestamps();
             $table->softDeletesTz();
         });
@@ -36,6 +35,6 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('top_banners');
     }
 }

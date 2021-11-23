@@ -16,6 +16,8 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('social-media') }}'><i class='nav-icon la la-question'></i> Social Medias</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('testimonial') }}'><i class='nav-icon la la-question'></i> Testimonials</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('video') }}'><i class='nav-icon la la-video'></i> Videos</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('top-banner') }}'><i class='nav-icon la la-flag'></i> Top banners</a></li>
+
 <li class='nav-item'><b> Pages Related</b></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('page') }}'><i class='nav-icon la la-globe'></i> Pages</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('section') }}'><i class='nav-icon la la la-square-o'></i> Sections</a></li>
@@ -24,3 +26,5 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('partner') }}'><i class='nav-icon la la-chain'></i> Partners</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon la la-users'></i> Users</a></li>
 
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('collection') }}'><i class='nav-icon la la-question'></i> Collections</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('feature') }}'><i class='nav-icon la la-question'></i> Features</a></li>
