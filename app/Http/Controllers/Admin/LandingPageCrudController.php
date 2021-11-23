@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\LandingPageRequest;
+use App\Models\LandingPage;
+use App\Models\Project;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -30,6 +32,44 @@ class LandingPageCrudController extends CrudController
         CRUD::setModel(\App\Models\LandingPage::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/page');
         CRUD::setEntityNameStrings('page', 'pages');
+
+        $this->crud->addFilter([
+            'name'  => 'project_id',
+            'type'  => 'dropdown',
+            'label' => 'Project'
+        ], Project::all()->pluck('name', 'id')->toArray(), function($value) {
+            $this->crud->addClause('where', 'project_id', $value);
+        });
+
+        $this->crud->addFilter([
+            'name' => 'active',
+            'type' => 'simple',
+            'label' => 'Published'
+        ]);
+
+        \Widget::add([
+            'type'    => 'div',
+            'class'   => 'row',
+            'content' => $this->widgets()
+        ]);
+    }
+
+    public function widgets() {
+        $model = LandingPage::all();
+        $wid = [];
+        foreach ($model->groupBy('project_id') as $m) {
+            $value = $m->count() / $model->count() * 100;
+            $name = $m[0]->project->name;
+            $wid[] = [
+                'type'          => 'progress_white',
+                'class'         => 'card mb-2 ',
+                'value'         => $name,
+                'description'   => "The project <b>$name</b> have <b>$value%</b> of the pages registered",
+                'progress'      => $value,
+                'progressClass' => 'progress-bar bg-indigo',
+            ];
+        }
+        return $wid;
     }
 
     /**

@@ -38,15 +38,14 @@ class ProjectController extends Controller
      */
     public function show(string $domain): JsonResponse
     {
-        \Cache::forget('projects');
-//        $project = \Cache::remember("projects:$domain", 3600, function () use ($domain) {
-//            return Project::with(['pages', 'topBanner'])
-//                ->where('domain', $domain)
-//                ->first();
-//        });
-        $project = Project::with(['pages', 'topBanner', 'socialmedias'])
-        ->where('domain', $domain)
-        ->first();
+        $project = \Cache::remember("projects:$domain", 36000, function () use ($domain) {
+            return Project::with(['pages', 'topBanner', 'socialmedias'])
+                ->where('domain', $domain)
+                ->first();
+        });
+//        $project = Project::with(['pages', 'topBanner', 'socialmedias'])
+//        ->where('domain', $domain)
+//        ->first();
         return response()->json($project);
     }
 

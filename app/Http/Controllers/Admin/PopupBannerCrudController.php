@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\PopupBannerRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CategoryCrudController
+ * Class PopupBannerCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CategoryCrudController extends CrudController
+class PopupBannerCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class CategoryCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Category::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/category');
-        CRUD::setEntityNameStrings('category', 'categories');
+        CRUD::setModel(\App\Models\PopupBanner::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/popup-banner');
+        CRUD::setEntityNameStrings('popup banner', 'popup banners');
     }
 
     /**
@@ -40,7 +40,15 @@ class CategoryCrudController extends CrudController
     protected function setupListOperation()
     {
 
-        CRUD::column('name');
+        CRUD::column('image')
+            ->type('image');
+        CRUD::column('title');
+        CRUD::column('project')
+            ->type('relationship');
+        CRUD::column('text')
+            ->type('textarea');
+        CRUD::column('link');
+
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -56,9 +64,17 @@ class CategoryCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CategoryRequest::class);
+        CRUD::setValidation(PopupBannerRequest::class);
 
-        CRUD::field('name');
+        CRUD::field('title');
+        CRUD::field('project')
+            ->type('relationship');
+        CRUD::field('text')
+            ->type('textarea');
+        CRUD::field('image')
+            ->type('image');
+        CRUD::field('link')
+            ->type('url');
 
 
         /**

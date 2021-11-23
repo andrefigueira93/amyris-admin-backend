@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Ingredient extends Model
+class PopupBanner extends Model
 {
-    use CrudTrait;
+    use CrudTrait, SoftDeletes;
 
     /*
     |--------------------------------------------------------------------------
@@ -15,7 +17,7 @@ class Ingredient extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'ingredients';
+    protected $table = 'popup_banners';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -34,6 +36,10 @@ class Ingredient extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    public function project(): BelongsTo {
+        return $this->belongsTo(Project::class);
+    }
 
     /*
     |--------------------------------------------------------------------------

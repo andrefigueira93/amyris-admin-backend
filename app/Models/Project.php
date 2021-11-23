@@ -24,7 +24,7 @@ class Project extends Model
     protected $table = 'projects';
      protected $primaryKey = 'id';
      public $timestamps = true;
-    protected $guarded = ['id', 'storefront_api_url'];
+    protected $guarded = ['id'];
     // protected $fillable = [];
      protected $hidden = [
          'partner_id',

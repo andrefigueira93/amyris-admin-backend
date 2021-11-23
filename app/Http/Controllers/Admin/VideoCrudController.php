@@ -39,7 +39,15 @@ class VideoCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-
+        CRUD::column('title');
+        CRUD::column('project')
+            ->label('Belongs to the project')
+            ->type('relationship');
+        CRUD::column('page')
+            ->label('Belongs to the page')
+            ->type('relationship');
+        CRUD::column('url')
+            ->label('URL');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:

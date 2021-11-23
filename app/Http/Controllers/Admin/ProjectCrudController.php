@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProjectRequest;
+use App\Models\Project;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -24,12 +25,13 @@ class ProjectCrudController extends CrudController
      *
      * @return void
      */
-    public function setup()
-    {
+    public function setup() {
         CRUD::setModel(\App\Models\Project::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/project');
         CRUD::setEntityNameStrings('project', 'projects');
     }
+
+
 
     /**
      * Define what happens when the List operation is loaded.

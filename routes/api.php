@@ -23,7 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/top-banner/{project}/', [TopBannerController::class, 'index']);
 Route::get('/pages/{project}/', [LandingPageController::class, 'index']);
 Route::get('/pages/{project}/{slug}', [LandingPageController::class, 'show']);
 Route::get('/project/{project}', [ProjectController::class, 'show']);
