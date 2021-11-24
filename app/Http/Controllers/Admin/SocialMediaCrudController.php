@@ -64,7 +64,7 @@ class SocialMediaCrudController extends CrudController
                     'type'          => 'progress_white',
                     'class'         => 'card mb-2 ',
                     'value'         => $name,
-                    'description'   => "Projects using the $name network",
+                    'description'   => "$percent% of the Projects are using the $name network",
                     'progress'      => $percent,
                     'progressClass' => 'progress-bar bg-indigo',
                 ];
