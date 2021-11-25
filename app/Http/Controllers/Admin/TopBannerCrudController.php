@@ -50,6 +50,13 @@ class TopBannerCrudController extends CrudController
             'type' => 'check',
         ]);
 
+        CRUD::column('bgcolor')
+            ->type('color')
+            ->label('Background Color');
+        CRUD::column('textcolor')
+            ->type('color')
+            ->label('Text Color');
+
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -83,6 +90,12 @@ class TopBannerCrudController extends CrudController
             ],
             'inline' => true
         ]);
+        CRUD::field('bgcolor')
+            ->type('color')
+            ->label('Background Color');
+        CRUD::field('textcolor')
+            ->type('color')
+        ->label('Text Color');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
