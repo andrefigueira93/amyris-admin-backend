@@ -18,12 +18,15 @@ class LandingPageController extends Controller
      */
     public function index(string $projectDomain): JsonResponse
     {
-        $pages = \Cache::remember("projects:$projectDomain:pages", 36000, function () use ($projectDomain){
-            return Project::where('domain', $projectDomain)->first()
-                ->pages()
-                ->where('active', 1)
-                ->get();
-            });
+        $pages = \Cache::remember("projects:$projectDomain:pages", 36000, function () use ($projectDomain) {
+            try {
+                return Project::where('domain', $projectDomain)->first()
+                    ->pages()
+                    ->where('active', 1)
+                    ->get();
+            } catch (\Exception $error) {
+                return $error;
+            }});
         return response()->json($pages);
     }
 
